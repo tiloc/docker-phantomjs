@@ -27,12 +27,6 @@ RUN set -x  \
         curl \
  && apt-get clean \
  && rm -rf /tmp/* /var/lib/apt/lists/* \
-    \
-    # Run as non-root user.
- && useradd --system --uid 72379 -m --shell /usr/sbin/nologin phantomjs \
- && su phantomjs -s /bin/sh -c "phantomjs --version"
-
-USER phantomjs
 
 EXPOSE 8910
 
