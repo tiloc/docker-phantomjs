@@ -31,4 +31,4 @@ RUN set -x  \
 EXPOSE 8910
 
 ENTRYPOINT ["dumb-init"]
-CMD ["phantomjs"]
+CMD ["phantomjs","--webdriver=8910"]
