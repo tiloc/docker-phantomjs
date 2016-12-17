@@ -28,7 +28,7 @@ RUN set -x  \
  && apt-get clean \
  && rm -rf /tmp/* /var/lib/apt/lists/* \
 
-EXPOSE 8910
+EXPOSE 80
 
 ENTRYPOINT ["dumb-init"]
-CMD ["phantomjs","--webdriver=8910"]
+CMD ["phantomjs","--webdriver=80"]
