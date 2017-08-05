@@ -9,6 +9,15 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+# ------------------------
+# SSH Server support
+# ------------------------
+COPY sshd_config /etc/ssh/
+
+RUN apt-get update \ 
+  && apt-get install -y --no-install-recommends openssh-server \
+  && echo "root:Docker!" | chpasswd
+
 RUN set -x  \
     # Install official PhantomJS release
  && apt-get update \
@@ -28,7 +37,7 @@ RUN set -x  \
  && apt-get clean \
  && rm -rf /tmp/* /var/lib/apt/lists/* \
 
-EXPOSE 80
+EXPOSE 2222 80
 
 ENTRYPOINT ["dumb-init"]
-CMD ["phantomjs","--webdriver=80"]
+CMD ["phantomjs","--webdriver=80 --ignore-ssl-errors=yes"]
